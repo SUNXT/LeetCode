@@ -23,4 +23,8 @@ public class Logger {
         System.out.print(String.valueOf(msg));
     }
 
+    public void println(Object msg){
+        System.out.println(String.valueOf(msg));
+    }
+
 }

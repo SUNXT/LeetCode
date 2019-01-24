@@ -28,12 +28,12 @@ public class AddTwoNumbers {
     private Logger logger = LoggerFactory.getLogger(this);
 
     public void test(){
-        ListNode l1 = createListNode(new int[]{0, 0, 3});
-        ListNode l2 = createListNode(new int[]{0, 2, 0});
+        ListNode l1 = createListNode(new int[]{0, 0, 3, 9});
+        ListNode l2 = createListNode(new int[]{0, 2, 0, 2, 3});
         logger.d(nodeToString(l1));
         logger.d(nodeToString(l2));
-        ListNode result = addTwoNumber(l1, l2);
-        logger.d("计算结果:" + nodeToString(result));
+        logger.d("计算结果:" + nodeToString(addTwoNumber(l1, l2)));
+        logger.d("计算结果:" + nodeToString(addTwoNumber2(l1, l2)));
 
     }
 
@@ -63,7 +63,14 @@ public class AddTwoNumbers {
         return sb.toString();
     }
 
-    private ListNode addTwoNumber(ListNode node1, ListNode node2){
+    /**
+     * 自己写的代码比较繁琐，思路为是对的
+     * 每个列表，从头节点开始遍历，按每位进行相加计算，取10的余数，然后如果相加大于10，则进1
+     * @param node1
+     * @param node2
+     * @return
+     */
+    public ListNode addTwoNumber(ListNode node1, ListNode node2){
         ListNode result;
         // 当两个都存在下一位的时候，才进行位加运算，从第一个节点开始
         ListNode temp1 = node1;
@@ -134,6 +141,29 @@ public class AddTwoNumbers {
             temp3 = temp3.next;
         }
         return result;
+    }
+
+    /**
+     * 官网提供的一种解法，代码比较简洁，思路也是一样的
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public ListNode addTwoNumber2(ListNode l1, ListNode l2){
+        ListNode result = new ListNode(0);
+        ListNode p = l1, q = l2, curr = result;
+        // 是否进位 0/1
+        int carry = 0;
+        while (p != null || q != null){
+            int val1 = (p != null) ? p.val : 0;
+            int val2 = (q != null) ? q.val : 0;
+            curr.next = new ListNode((val1 + val2 + carry) % 10);
+            carry = (val1 + val2 + carry) / 10;
+            p = (p != null) ? p.next : null;
+            q = (q != null) ? q.next : null;
+            curr = curr.next;
+        }
+        return result.next;
     }
 
     public class ListNode {
