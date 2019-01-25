@@ -4,6 +4,7 @@ import utils.Logger;
 import utils.LoggerFactory;
 
 /**
+ * LeetCode 3
  * 寻找字符串中最长的不重复的子串，输出该子串的长度
  * Given a string, find the length of the longest substring without repeating characters.
  */
