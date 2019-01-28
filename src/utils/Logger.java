@@ -16,7 +16,7 @@ public class Logger {
     }
 
     public void d(String msg){
-        System.out.println(getTime() + "/" + mTag + ": " + msg);
+        System.out.println(getTime() + "? D/" + mTag + ": " + msg);
     }
 
     public void print(Object msg){
