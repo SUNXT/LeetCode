@@ -55,7 +55,9 @@ public class StringToInteger {
 
     public static void main(String[] args){
         StringToInteger toInteger = new StringToInteger();
-        logger.d("result: " + toInteger.myAtoi("20000000000000000000"));
+        logger.d("result: " + toInteger.myAtoi("  0000000000012345678"));
+        logger.d("result: " + toInteger.myAtoi("-91283472332"));
+        logger.d("result: " + toInteger.myAtoi("9223372036854775808"));
 //        toInteger.test();
     }
 
@@ -87,10 +89,20 @@ public class StringToInteger {
             if (isNumber(sub)){
                 int index = sub.indexOf(".");
                 if (index != -1){
-                    result = Long.parseLong(sub.substring(0, index));
-                }else {
-                    result = Long.parseLong(sub);
+                    sub = sub.substring(0, index);
                 }
+                int k = 0;
+                for (int i = 0; i < sub.length(); i ++){
+                    if (sub.charAt(i) != '0'){
+                        break;
+                    }
+                    k ++;
+                }
+                sub = sub.substring(k);
+                if (sub.length() > 11){
+                    sub = sub.substring(0, 11);
+                }
+                result = Long.parseLong(sub);
             }
         }catch (Exception e){
             e.printStackTrace();
