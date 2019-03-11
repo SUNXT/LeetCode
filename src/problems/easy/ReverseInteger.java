@@ -1,4 +1,4 @@
-package problems;
+package problems.easy;
 
 import utils.Logger;
 import utils.LoggerFactory;
