@@ -55,8 +55,8 @@ public class StringToInteger {
 
     public static void main(String[] args){
         StringToInteger toInteger = new StringToInteger();
-        logger.d("result: " + toInteger.myAtoi("  0000000000012345678"));
-        logger.d("result: " + toInteger.myAtoi("-91283472332"));
+        logger.d("result: " + toInteger.myAtoi("  -5-"));
+        logger.d("result: " + toInteger.myAtoi("21474836++"));
         logger.d("result: " + toInteger.myAtoi("9223372036854775808"));
 //        toInteger.test();
     }
@@ -86,7 +86,24 @@ public class StringToInteger {
         }
         String  sub = str.substring(0, lastNumIndex);
         try {
+            if (sub.indexOf('-') > 0){
+                sub = sub.substring(0, sub.indexOf('-'));
+            }else if (sub.indexOf('+') > 0){
+                sub = sub.substring(0, sub.indexOf('+'));
+            }
+            if (sub.lastIndexOf('-') > 0){
+                sub = sub.substring(0, sub.lastIndexOf('-'));
+            }else if (sub.lastIndexOf('+') > 0){
+                sub = sub.substring(0, sub.lastIndexOf('+'));
+            }
             if (isNumber(sub)){
+                boolean negative = false;
+                if (sub.charAt(0) == '-'){
+                    negative = true;
+                    sub = sub.substring(1);
+                }else if (sub.charAt(0) == '+'){
+                    sub = sub.substring(1);
+                }
                 int index = sub.indexOf(".");
                 if (index != -1){
                     sub = sub.substring(0, index);
@@ -103,6 +120,9 @@ public class StringToInteger {
                     sub = sub.substring(0, 11);
                 }
                 result = Long.parseLong(sub);
+                if (negative){
+                    result = -result;
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
