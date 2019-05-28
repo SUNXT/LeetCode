@@ -59,12 +59,9 @@ public class LongestSubstringLength {
         int maxLength = 1;
         int p = 0,  n = s.length();
         // 遍历一次，时间复杂度 O(n)
-        for (int q = 1; q <= n; q ++){
+        for (int q = 1; q < n; q ++){
             maxLength = Math.max(maxLength, q - p);
             logger.d("maxLength: " + maxLength);
-            if (q == n){
-                break;
-            }
             String sub = s.substring(p, q);
             logger.d(sub);
             int k = s.substring(0, q).lastIndexOf(s.charAt(q));
