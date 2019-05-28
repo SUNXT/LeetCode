@@ -27,4 +27,14 @@ public class Logger {
         System.out.println(String.valueOf(msg));
     }
 
+    public void printArray(int[] objects){
+        if (objects != null){
+            for (Object o : objects){
+                print(o);
+                print(" ");
+            }
+            println("");
+        }
+    }
+
 }
