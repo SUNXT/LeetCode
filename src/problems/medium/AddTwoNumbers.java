@@ -1,5 +1,6 @@
 package problems.medium;
 
+import common.ListNode;
 import utils.LoggerFactory;
 import utils.Logger;
 
@@ -168,9 +169,4 @@ public class AddTwoNumbers {
         return result.next;
     }
 
-    public class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) { val = x; }
-    }
 }

@@ -1,5 +1,7 @@
 package problems.hard;
 
+import common.ListNode;
+
 /**
  * LeetCode 23
  *
@@ -23,12 +25,4 @@ public class MergeKSortedLists {
         return null;
     }
 
-    /**
-     * 链表结构
-     */
-    public class ListNode {
-      int val;
-      ListNode next;
-      ListNode(int x) { val = x; }
-    }
 }
