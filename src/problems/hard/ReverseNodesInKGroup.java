@@ -38,10 +38,11 @@ import static common.ListNode.print;
 public class ReverseNodesInKGroup {
 
     public static void main(String[] args){
-        ListNode listNode = ListNode.create(new int[]{1, 2, 3, 4, 5, 6, 7, 8});
+        int[] array = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
+        ListNode listNode = ListNode.create(array);
         print(listNode);
         ReverseNodesInKGroup solution = new ReverseNodesInKGroup();
-        print(solution.reverseKGroup(listNode, 3));
+        print(solution.reverseKGroupFormTail(listNode, 3));
     }
 
     /**
@@ -93,5 +94,26 @@ public class ReverseNodesInKGroup {
         cur.next = pre;
         head.next = null;
         return cur;
+    }
+
+    /**
+     * 头条变形题，从后面开始按k个数组进行逆转
+     * 例如： 链表:1->2->3->4->5->6->7->8->null, K = 3。那么 6->7->8，3->4->5，1->2各位一组。调整后：1->2->5->4->3->8->7->6->null。其中 1，2不调整，因为不够一组。
+     * 思路，就是第一次先逆转整个链表
+     * 输入： 1 2 3 4 5 6 7 8
+     * 逆转一次：8 7 6 5 4 3 2 1
+     * 按k个逆转：6 7 8 3 4 5 2 1
+     * 再逆转：1 2 5 4 3 8 7 6
+     * @param head
+     * @param k
+     * @return
+     */
+    public ListNode reverseKGroupFormTail(ListNode head, int k){
+        // 第一次逆转
+        ListNode reverseHead = reverse(head);
+        // 使用reverseKGroup逆转
+        ListNode reverseKGroup = reverseKGroup(reverseHead, k);
+        // 再逆转一次
+        return reverse(reverseKGroup);
     }
 }
