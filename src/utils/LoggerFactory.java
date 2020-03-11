@@ -10,4 +10,8 @@ public class LoggerFactory {
     public static Logger getLogger(Class c){
         return new Logger(c.getName());
     }
+
+    public static Logger getDefalutLogger(){
+        return new Logger("Solution");
+    }
 }

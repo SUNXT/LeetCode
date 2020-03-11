@@ -27,13 +27,25 @@ public class Logger {
         System.out.println(String.valueOf(msg));
     }
 
+    public void println(){
+        println("");
+    }
+
     public void printArray(int[] objects){
         if (objects != null){
             for (Object o : objects){
                 print(o);
-                print(" ");
+                print("\t");
             }
             println("");
+        }
+    }
+
+    public void printArray(int[][] ints){
+        if (ints != null){
+            for (int[] o: ints){
+                printArray(o);
+            }
         }
     }
 
